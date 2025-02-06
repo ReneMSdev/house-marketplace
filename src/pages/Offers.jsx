@@ -1,4 +1,4 @@
 const Offers = () => {
-  return <div>Offers</div>
+  return <h1>Offers</h1>
 }
 export default Offers
