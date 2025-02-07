@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import ArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg?react'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
@@ -32,10 +33,16 @@ const SignUp = () => {
       const user = userCredential.user
 
       updateProfile(auth.currentUser, {
-        displayName: name,
+        displayName: name, // updates user object's displayName in firebase
       })
 
-      navigate('/')
+      const formDataCopy = { ...formData } // creates copy of db
+      delete formDataCopy.password // deletes password so its not added to db
+      formDataCopy.timestamp = serverTimestamp() // adds timestamp to db
+
+      await setDoc(doc(db, 'users', user.uid), formDataCopy) // adds users to db
+
+      navigate('/') // redirects to home (Explore)
     } catch (error) {
       console.log(error)
     }
@@ -68,7 +75,7 @@ const SignUp = () => {
             />
             <div className="passwordInputDiv">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? 'text' : 'password'} // toggles password visibility
                 className="passwordInput"
                 placeholder="Password"
                 id="password"
@@ -80,7 +87,7 @@ const SignUp = () => {
                 src={visibilityIcon}
                 alt="show password"
                 className="showPassword"
-                onClick={() => setShowPassword((prevState) => !prevState)}
+                onClick={() => setShowPassword((prevState) => !prevState)} // toggles password visibility
               />
             </div>
 
