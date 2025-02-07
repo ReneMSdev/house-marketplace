@@ -22,7 +22,7 @@ function App() {
           />
           <Route
             path="/profile"
-            element={<SignIn />}
+            element={<Profile />}
           />
           <Route
             path="/sign-in"
