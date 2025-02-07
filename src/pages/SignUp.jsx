@@ -40,7 +40,7 @@ const SignUp = () => {
       delete formDataCopy.password // deletes password so its not added to db
       formDataCopy.timestamp = serverTimestamp() // adds timestamp to db
 
-      await setDoc(doc(db, 'users', user.uid), formDataCopy) // adds users to db
+      await setDoc(doc(db, 'users', user.uid), formDataCopy) // adds user to db
 
       navigate('/') // redirects to home (Explore)
     } catch (error) {
