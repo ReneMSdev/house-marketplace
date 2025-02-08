@@ -44,6 +44,7 @@ const SignUp = () => {
       await setDoc(doc(db, 'users', user.uid), formDataCopy) // adds user to db
 
       navigate('/') // redirects to home (Explore)
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       toast.error('Something went wrong with registration')
     }
