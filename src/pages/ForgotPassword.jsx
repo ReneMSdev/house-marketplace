@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+import { sendPasswordResetEmail } from 'firebase/auth'
 import { toast } from 'react-toastify'
 import ArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg?react'
+import { auth } from '../firebase.config'
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('')
@@ -12,7 +13,6 @@ const ForgotPassword = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
     try {
-      const auth = getAuth()
       await sendPasswordResetEmail(auth, email)
       toast.success('Email was sent')
       // eslint-disable-next-line no-unused-vars

@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase.config'
+import OAuth from '../components/OAuth'
 import ArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg?react'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 
@@ -26,7 +28,6 @@ const SignIn = () => {
     e.preventDefault()
 
     try {
-      const auth = getAuth()
       const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
       if (userCredential.user) {
@@ -92,7 +93,7 @@ const SignIn = () => {
             </div>
           </form>
 
-          {/* Google OAuth */}
+          <OAuth />
 
           <Link
             to="/sign-up"

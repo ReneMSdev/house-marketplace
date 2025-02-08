@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { getAuth, updateProfile } from 'firebase/auth'
+import { updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { db } from '../firebase.config'
+import { auth, db } from '../firebase.config'
 import { updateDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 
 const Profile = () => {
-  const auth = getAuth()
   const [changeDetails, setChangeDetails] = useState(false)
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
