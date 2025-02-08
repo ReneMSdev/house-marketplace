@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import OAuth from '../components/OAuth'
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import { auth, db } from '../firebase.config'
 import ArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg?react'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import OAuth from '../components/OAuth'
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -111,6 +111,7 @@ const SignUp = () => {
               </button>
             </div>
           </form>
+
           <OAuth />
 
           <Link
