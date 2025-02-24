@@ -4,6 +4,8 @@ import bedIcon from '../assets/svg/bedIcon.svg'
 import bathtubIcon from '../assets/svg/bathtubIcon.svg'
 
 const ListingItem = ({ listing, id, onDelete }) => {
+  console.log(listing)
+
   return (
     <li className="categoryListing">
       <Link
@@ -11,7 +13,7 @@ const ListingItem = ({ listing, id, onDelete }) => {
         className="categoryListingLink"
       >
         <img
-          src={listing.imgUrls[0] || 'https://placehold.co/400'}
+          src={listing.imgUrls?.[0] ? listing.imgUrls[0] : 'https://placehold.co/400'}
           alt={listing.name || 'Listing'}
           className="categoryListingImg"
         />
