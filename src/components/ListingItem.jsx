@@ -11,8 +11,8 @@ const ListingItem = ({ listing, id, onDelete }) => {
         className="categoryListingLink"
       >
         <img
-          src={listing.imageUrls[0]}
-          alt={listing.name}
+          src={listing.imgUrls[0] || 'https://placehold.co/400'}
+          alt={listing.name || 'Listing'}
           className="categoryListingImg"
         />
         <div className="categoryListingDetails">
